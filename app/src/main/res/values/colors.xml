@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#0089d2</color>
+    <color name="colorAccent2">#767676</color>
+    <color name="divider_color">#dfdfdf</color>
+    <color name="grid_divider_color">#64848484</color>
+    <color name="actionbar_icon_color">#000</color>
+    <color name="home_menu_icon_color">@color/colorAccent</color>
+    <color name="fab_icon_color">#fff</color>
+    <color name="griditem_text_2">#d7866400</color>
+    <color name="tab_color">@color/colorAccent</color>
+    <color name="text_color_primary">#434343</color>
+    <color name="text_color_secondary">#c88b8b8b</color>
+    <color name="selector">#e7e7e7</color>
+    <color name="selector_pressed">#eaeaea</color>
+</resources>

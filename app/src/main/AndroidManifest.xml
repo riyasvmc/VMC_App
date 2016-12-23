@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zeefive.vmcapp">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <application
+        android:name=".data.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="Manager 1.0"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activity.ActivityProject"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityAccount"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityAccountDetail"
+            android:parentActivityName=".activity.ActivityAccount" />
+        <activity
+            android:name=".activity.ActivityShop"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityShopDetail"
+            android:parentActivityName=".activity.ActivityShop" />
+        <activity
+            android:name=".activity.ActivitySale"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityExpiryDates"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityTools"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityTodo"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityProjectDetail"
+            android:parentActivityName=".activity.ActivityProject" />
+        <activity
+            android:name=".activity.ActivityConcreteCalculator"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.ActivityDeviceList"
+            android:parentActivityName=".activity.ActivityReceiptPrint" />
+        <activity
+            android:name=".activity.ActivityReceiptPrint"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.ActivitySplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AboutActivity" />
+    </application>
+
+</manifest>

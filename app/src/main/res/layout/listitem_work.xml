@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/statelist_item_background">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/listitem_abstract_texts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+                <TextView
+                    android:id="@+id/tag_concrete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/tag_text_size"
+                    android:layout_marginLeft="4dp"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:text="  CONCRETE  "/>
+                <TextView
+                    android:id="@+id/tag_tipper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_tipper"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/tag_text_size"
+                    android:layout_marginLeft="4dp"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:text="  TIPPER  "/>
+                <TextView
+                    android:id="@+id/tag_jcb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_jcb"
+                    android:textColor="#000"
+                    android:textSize="@dimen/tag_text_size"
+                    android:layout_marginLeft="4dp"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+                    android:text="  JCB  "/>
+            </LinearLayout>
+            </LinearLayout>
+    <include layout="@layout/list_divider"/>
+</LinearLayout>

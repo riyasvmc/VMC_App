@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape>
+            <solid android:color="#000000" />
+        </shape>
+    </item>
+    <item android:top="30dp">
+        <shape>
+            <solid android:color="@color/divider_color" />
+        </shape>
+    </item>
+    <item android:bottom="1dp">
+        <shape>
+            <solid android:color="@color/colorPrimary" />
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="@dimen/radius_actionbar_corner"
+                android:topRightRadius="@dimen/radius_actionbar_corner"/>
+        </shape>
+    </item>
+</layer-list>

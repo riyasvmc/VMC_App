@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_null_projects"
+        android:orderInCategory="101"
+        android:title="Reset Projects Node"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_null_todos"
+        android:orderInCategory="102"
+        android:title="Reset ToDos Node"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_null_purchases"
+        android:orderInCategory="103"
+        android:title="Reset Purchses Node"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_null_rents"
+        android:orderInCategory="103"
+        android:title="Reset Rents Node"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_null_tools"
+        android:orderInCategory="103"
+        android:title="Reset Tools Node"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="101"
+        android:title="About"
+        app:showAsAction="never" />
+</menu>

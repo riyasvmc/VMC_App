@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.ActivityProjectDetail">
+
+    <include
+        layout="@layout/my_recyclerview"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:elevation="6dp"
+        android:padding="4dp">
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type ToDo here... eg. Deliver sand, etc..."
+            android:imeActionId="@+id/add"
+            android:inputType="textCapSentences"
+            android:background="#ffffff"
+            android:padding="10dp"
+            android:imeOptions="actionDone"/>
+    </LinearLayout>
+</FrameLayout>

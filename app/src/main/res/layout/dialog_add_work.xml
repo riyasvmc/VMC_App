@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_vertical_margin"
+              android:paddingRight="@dimen/activity_vertical_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context=".activity.ActivityProject"
+              android:orientation="vertical"
+    android:weightSum="1">
+    <EditText
+        android:id="@+id/editText_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Item"
+        android:inputType="textCapWords|textMultiLine"
+        android:hapticFeedbackEnabled="true"
+        android:isScrollContainer="true"
+        android:lines="3"
+        android:overScrollMode="always"
+        android:layout_weight="0.27" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/checkBox_Concrete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Concrete"/>
+        <CheckBox
+            android:id="@+id/checkBox_Tipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipper"/>
+        <CheckBox
+            android:id="@+id/checkBox_Jcb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JCB"/>
+        </LinearLayout>
+</LinearLayout>
