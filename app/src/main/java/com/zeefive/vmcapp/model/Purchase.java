@@ -8,8 +8,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 
-import hugo.weaving.DebugLog;
-
 // [START blog_user_class]
 @IgnoreExtraProperties
 public class Purchase implements Serializable {

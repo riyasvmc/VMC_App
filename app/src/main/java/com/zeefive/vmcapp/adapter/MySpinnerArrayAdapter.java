@@ -1,8 +1,7 @@
 package com.zeefive.vmcapp.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.model.HomeMenuItem;
 import com.zeefive.vmcapp.model.Project;
-import com.zeefive.vmcapp.model.SpinnerItem;
 
 import java.util.List;
 

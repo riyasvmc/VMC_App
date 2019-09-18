@@ -1,25 +1,27 @@
 package com.zeefive.vmcapp.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.Utilities;
-import com.zeefive.vmcapp.activity.ActivityProjectDetail;
 import com.zeefive.vmcapp.adapter.TodoAdapter;
 import com.zeefive.vmcapp.data.Data;
 import com.zeefive.vmcapp.model.ToDo;
@@ -32,13 +34,17 @@ public class ActivityProjectDetail_page_1 extends Fragment {
     private FirebaseAuth mAuth;
     private TodoAdapter mAdapter;
     public static RecyclerView mRecyclerView;
+    private FloatingActionButton floatingActionButton;
+    private LinearLayout emptyView;
     private EditText mEditText;
     private ItemTouchHelper mItemTouchHelper;
+    private LinearLayoutManager mLayoutManager;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page_todo, container, false);
+        View view = inflater.inflate(R.layout.activity_todo, container, false);
 
         mEditText = (EditText) view.findViewById(R.id.editText);
         mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -51,14 +57,29 @@ public class ActivityProjectDetail_page_1 extends Fragment {
             }
         });
         mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
+
+        // empty view
+        emptyView = (LinearLayout) view.findViewById(R.id.empty_view);
+
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Query query = (Data.QUERY_TODOS).orderByChild("project/title").equalTo(ActivityProjectDetail.mProject.getTitle());
+        // hide fab
+        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        floatingActionButton.hide();
+
+        Query query = (Data.getQuery(getActivity(), Data.TODOS)).orderByChild("project/title").equalTo(ActivityProjectDetail.mProject.getTitle());
+        query.addValueEventListener(valueEventListener);
 
         mAdapter = new TodoAdapter(query, (ActivityProjectDetail) getActivity());
+        mAdapter.registerAdapterDataObserver(adapterDataObserver);
         mRecyclerView.setAdapter(mAdapter);
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
@@ -75,4 +96,37 @@ public class ActivityProjectDetail_page_1 extends Fragment {
             mActionMode.finish();
         }
     }
+
+
+    private ValueEventListener valueEventListener = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            long count = dataSnapshot.getChildrenCount();
+            if(count == 0){
+                mRecyclerView.setVisibility(View.GONE);
+                emptyView.setVisibility(View.VISIBLE);
+            }else{
+                mRecyclerView.setVisibility(View.VISIBLE);
+                emptyView.setVisibility(View.GONE);
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+    private RecyclerView.AdapterDataObserver adapterDataObserver = new RecyclerView.AdapterDataObserver() {
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+            super.onItemRangeInserted(positionStart, itemCount);
+            int count = mAdapter.getItemCount();
+            int visiblePosition = mLayoutManager.findLastCompletelyVisibleItemPosition();
+            if(visiblePosition == -1 || (positionStart >= (count - 1) && visiblePosition == (positionStart -1))){
+                mRecyclerView.scrollToPosition(positionStart);
+            }
+        }
+    };
 }

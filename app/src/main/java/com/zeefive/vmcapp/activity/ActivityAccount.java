@@ -1,28 +1,22 @@
 package com.zeefive.vmcapp.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.adapter.AccountAdapter;
-import com.zeefive.vmcapp.adapter.PaymentAdapter;
-import com.zeefive.vmcapp.adapter.ShopAdapter;
 import com.zeefive.vmcapp.data.Data;
-
-import hugo.weaving.DebugLog;
 
 public class ActivityAccount extends ActivityBase {
 
     private static final String TITLE = "Accounts";
-    private FirebaseAuth mAuth;
     private AccountAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private LinearLayout emptyView;
@@ -33,8 +27,7 @@ public class ActivityAccount extends ActivityBase {
         setContentView(R.layout.recyclerview_fab);
         setUpActionBar(TITLE, true);
 
-        mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         emptyView = (LinearLayout) findViewById(R.id.empty_view);
@@ -48,9 +41,9 @@ public class ActivityAccount extends ActivityBase {
         });
 
         // project query
-        Query query = Data.QUERY_ACCOUNTS;
+        Query query = Data.getQuery(getBaseContext(), Data.ACCOUNTS);
         query.addValueEventListener(new ValueEventListener() {
-            @DebugLog
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long count = dataSnapshot.getChildrenCount();

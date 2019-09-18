@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zeefive.vmcapp.view.RecyclerViewEmptySupport
-    android:id="@+id/recyclerView"
+    android:id="@+id/recycler_view"
 android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentTop="true"

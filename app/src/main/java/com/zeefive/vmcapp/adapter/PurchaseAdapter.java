@@ -2,8 +2,8 @@ package com.zeefive.vmcapp.adapter;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.PopupMenu;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -15,8 +15,8 @@ import com.google.firebase.database.ServerValue;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.activity.ActivityBase;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddPurchase;
-import com.zeefive.vmcapp.fragment.DialogFragment_Purchase_DatePicker;
+import com.zeefive.vmcapp.dialog.DialogFragment_AddPurchase;
+import com.zeefive.vmcapp.dialog.DialogFragment_Purchase_DatePicker;
 import com.zeefive.vmcapp.model.Purchase;
 import com.zeefive.vmcapp.model.Shop;
 import com.zeefive.vmcapp.viewholder.PurchaseViewHolder;
@@ -90,15 +90,14 @@ public class PurchaseAdapter extends FirebaseRecyclerAdapter<Purchase, PurchaseV
     private void deleteItem(Purchase item){
         Map<String, Object> map = new HashMap<>();
         map.put(item.getKey(), null);
-        ((DatabaseReference)Data.QUERY_PURCHASES).updateChildren(map);
+        ((DatabaseReference)Data.getQuery(activity, Data.PURCHASE)).updateChildren(map);
         Toast.makeText(activity, "Deleted!", Toast.LENGTH_SHORT).show();
     }
 
     private void duplicateItem(Purchase item){
-        DatabaseReference reference = ((DatabaseReference)Data.QUERY_PURCHASES).push();
+        DatabaseReference reference = ((DatabaseReference)Data.getQuery(activity, Data.PURCHASE)).push();
         String key = reference.getKey();
-        item.setKey(key);
-        showEditorDialog(item);
+        showEditorDialog(new Purchase(key, item.getTitle(), item.getProjectKey(), item.getProject(), item.getQuantity(), item.getRate(), item.getAmount(), item.getFrom(), item.getShop(), item.getCreatedAt()));
     }
 
     public void showEditorDialog(@NonNull Purchase item) {
@@ -112,7 +111,7 @@ public class PurchaseAdapter extends FirebaseRecyclerAdapter<Purchase, PurchaseV
     }
 
     public void addNewPurchase(Shop shop){
-        DatabaseReference reference = ((DatabaseReference)Data.QUERY_PURCHASES).push();
+        DatabaseReference reference = ((DatabaseReference)Data.getQuery(activity, Data.PURCHASE)).push();
         String key = reference.getKey();
         Purchase item = new Purchase(key, "", "", null, "0", "0", 0, shop.getKey(), shop, ServerValue.TIMESTAMP);
         showEditorDialog(item);

@@ -1,18 +1,15 @@
 package com.zeefive.vmcapp.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ServerValue;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.adapter.PurchaseAdapter;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.model.Purchase;
 import com.zeefive.vmcapp.model.Shop;
 
 public class ActivityShopDetail extends ActivityBase {
@@ -32,7 +29,7 @@ public class ActivityShopDetail extends ActivityBase {
 
         setUpActionBar(mItem.getTitle(), true);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -43,7 +40,7 @@ public class ActivityShopDetail extends ActivityBase {
             }
         });
 
-        Query query = Data.QUERY_PURCHASES.orderByChild("from").equalTo(mItem.getKey());
+        Query query = Data.getQuery(getBaseContext(), Data.PURCHASE).orderByChild("from").equalTo(mItem.getKey());
 
         mAdapter = new PurchaseAdapter(query, this);
         mRecyclerView.setAdapter(mAdapter);

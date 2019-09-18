@@ -2,28 +2,28 @@ package com.zeefive.vmcapp.activity;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.adapter.PagerAdapter;
+import com.zeefive.vmcapp.adapter.ProjectDetailPagerAdapter;
 import com.zeefive.vmcapp.animation.PageTransformerPopUp;
-import com.zeefive.vmcapp.fragment.DialogFragment_DeleteProject;
+import com.zeefive.vmcapp.dialog.DialogFragment_DeleteProject;
 import com.zeefive.vmcapp.model.Project;
 
 public class ActivityProjectDetail extends ActivityBase {
 
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
-    private PagerAdapter mPagerAdapter;
+    private ProjectDetailPagerAdapter mProjectDetailPagerAdapter;
     public static Project mProject = new Project();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_detail);
+        setContentView(R.layout.activity_view_pager);
 
         // get passed item
         mProject = (Project) getIntent().getSerializableExtra(Project.ITEM);
@@ -35,8 +35,8 @@ public class ActivityProjectDetail extends ActivityBase {
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
         // Setting view pager
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mPagerAdapter);
+        mProjectDetailPagerAdapter = new ProjectDetailPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mProjectDetailPagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setPageTransformer(true, new PageTransformerPopUp(PageTransformerPopUp.TransformType.ZOOM));
 

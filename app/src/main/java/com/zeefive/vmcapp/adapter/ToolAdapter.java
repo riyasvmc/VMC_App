@@ -2,7 +2,7 @@ package com.zeefive.vmcapp.adapter;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v7.view.ActionMode;
+import androidx.appcompat.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +14,7 @@ import com.zeefive.vmcapp.MySelectableInterface;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.activity.ActivityTools;
 import com.zeefive.vmcapp.activity.ActivityBase;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddTool;
+import com.zeefive.vmcapp.dialog.DialogFragment_AddTool;
 import com.zeefive.vmcapp.model.Tool;
 import com.zeefive.vmcapp.viewholder.ToolsViewHolder;
 

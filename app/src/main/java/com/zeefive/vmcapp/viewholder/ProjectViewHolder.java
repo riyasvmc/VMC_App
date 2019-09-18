@@ -1,7 +1,6 @@
 package com.zeefive.vmcapp.viewholder;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,8 +19,15 @@ public class ProjectViewHolder extends RecyclerView.ViewHolder {
         titleView2 = (TextView) view.findViewById(R.id.textView2);
     }
 
-    public void bindToPost(Project project, Context context) {
+    public void bindToPost(Project project, int position) {
         titleView1.setText(project.getTitle());
         titleView2.setText(project.getLocation());
+
+        if(position % 2 == 1) {
+            itemView.setBackgroundResource(R.drawable.selector_dark);
+        }
+        else{
+            itemView.setBackgroundResource(R.drawable.selector_light);
+        }
     }
 }

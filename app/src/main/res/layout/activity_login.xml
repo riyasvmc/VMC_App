@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:src="@drawable/icon_big"
+                android:layout_marginTop="64dp"
+                android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout2"
+        android:background="@drawable/bg_edittext"
+        android:padding="12dp"
+        android:layout_margin="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personalise the App"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="?android:textColorPrimary"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please try to Sign in with your Company email address. You can change the Account by Logging out and try again."
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"/>
+        <Button
+            android:id="@+id/google_signin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect with Google"
+            style="@style/Button_blue"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/revoke_access"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disconnect"
+        style="@style/Button_red"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+</RelativeLayout>

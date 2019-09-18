@@ -2,11 +2,11 @@ package com.zeefive.vmcapp.activity;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddSale;
+import com.zeefive.vmcapp.dialog.DialogFragment_AddSale;
 import com.zeefive.vmcapp.model.Sale;
 import com.zeefive.vmcapp.viewholder.SaleViewHolder;
 
@@ -47,11 +47,11 @@ public class ActivitySale extends ActivityBase {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Query query = Data.QUERY_SALES;
+        Query query = Data.getQuery(getBaseContext(), Data.SALES);
 
         mAdapter = new FirebaseRecyclerAdapter<Sale, SaleViewHolder>(Sale.class, R.layout.listitem,
                 SaleViewHolder.class, query) {
@@ -77,7 +77,7 @@ public class ActivitySale extends ActivityBase {
                                         break;
                                     case R.id.action_done:
                                         boolean value = item.isDone() ? false : true;
-                                        ((DatabaseReference)Data.QUERY_SALES).child(item.getKey()).child(Data.KEY_DONE).setValue(value);
+                                        ((DatabaseReference)Data.getQuery(getBaseContext(), Data.SALES)).child(item.getKey()).child(Data.KEY_DONE).setValue(value);
                                         break;
                                     case R.id.action_delete:
                                         userRef.setValue(null);

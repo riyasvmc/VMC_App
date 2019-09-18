@@ -1,12 +1,11 @@
 package com.zeefive.vmcapp.viewholder;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.model.Sale;
 import com.zeefive.vmcapp.model.Shop;
 
 public class ShopViewHolder extends RecyclerView.ViewHolder {

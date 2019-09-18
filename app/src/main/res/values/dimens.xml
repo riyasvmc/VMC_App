@@ -13,4 +13,5 @@
     <dimen name="elevation_tab">1dp</dimen>
     <dimen name="width_gridview_divider">1px</dimen>
     <dimen name="tag_text_size">11sp</dimen>
+    <dimen name="radius_button_corner">10dp</dimen>
 </resources>

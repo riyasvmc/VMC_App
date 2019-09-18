@@ -1,7 +1,7 @@
 package com.zeefive.vmcapp.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.model.HomeMenuItem;
+import com.zeefive.vmcapp.model.MenuItem;
 
-public class HomeMenuAdapter extends ArrayAdapter<HomeMenuItem> {
+public class HomeMenuAdapter extends ArrayAdapter<MenuItem> {
     private Context mContext;
     private int resource;
-    public HomeMenuAdapter(Context context, int resource, HomeMenuItem[] list) {
+    public HomeMenuAdapter(Context context, int resource, MenuItem[] list) {
         super(context, resource, list);
         this.mContext = context;
         this.resource = resource;
@@ -26,7 +26,7 @@ public class HomeMenuAdapter extends ArrayAdapter<HomeMenuItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = null;
-        HomeMenuItem item = getItem(position);
+        MenuItem item = getItem(position);
         if(convertView == null){
             LayoutInflater inflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflator.inflate(resource, parent, false);

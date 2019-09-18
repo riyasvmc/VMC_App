@@ -9,18 +9,16 @@ public class User {
     private String name;
     private String email;
     private String photo;
-    private String parentUid;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String uid, String name, String email, String photo, String parentUid) {
+    public User(String uid, String name, String email, String photo) {
         this.uid = uid;
         this.name = name;
         this.email = email;
         this.photo = photo;
-        this.parentUid = parentUid;
     }
 
     public String getUid() {
@@ -37,10 +35,6 @@ public class User {
 
     public String getPhoto() {
         return photo;
-    }
-
-    public String getParentUid() {
-        return parentUid;
     }
 }
 // [END blog_user_class]

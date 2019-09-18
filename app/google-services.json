@@ -15,11 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "559112506912-ppkr3g5v6i08dr6mmnd1p4ckge7v3nqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeefive.vmcapp",
+            "certificate_hash": "90fe2a34087efa47caaef7f137e0a0b4155904b8"
+          }
+        },
+        {
+          "client_id": "559112506912-0mq8vn2kn319322lnqqhckkdd0ggjh33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeefive.vmcapp",
+            "certificate_hash": "dff6c66191bd705b5cc974240662d044373c3f54"
+          }
+        },
+        {
           "client_id": "559112506912-3kqrtq6et8lq2kvr6ssqugmpt49fgc97.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.zeefive.vmcapp",
-            "certificate_hash": "DECB31C7793B06CB81EBB65A20DC0A80D43FFEBA"
+            "certificate_hash": "decb31c7793b06cb81ebb65a20dc0a80d43ffeba"
           }
         },
         {
@@ -33,20 +49,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "559112506912-cmbg68f46fkcb56mrkgq4dsbhovpbekc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

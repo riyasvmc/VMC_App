@@ -1,28 +1,25 @@
 package com.zeefive.vmcapp.activity;
 
 import android.content.Intent;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.Utilities;
-import com.zeefive.vmcapp.adapter.HomeMenuAdapter;
-import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.model.HomeMenuItem;
+import com.zeefive.vmcapp.adapter.HomePagerAdapter;
+import com.zeefive.vmcapp.animation.PageTransformerPopUp;
+import com.zeefive.vmcapp.view.NonSwipableViewPager;
 
-import java.io.File;
-
-public class MainActivity extends ActivityBase {
+public class MainActivity extends ActivityBase implements
+        GoogleApiClient.OnConnectionFailedListener{
 
     /**
      * todo separate anonymous adapter implementation to separate package
@@ -36,31 +33,71 @@ public class MainActivity extends ActivityBase {
      *
      */
 
-    public static final String KEY = "key";
-    // Views
-    private ListView mListView;
-    private File mFile;
+    private BottomNavigationView bottomNavigationView;
+    private TextView textView;
+    private NonSwipableViewPager viewPager;
+    private static FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setUpActionBar("VMC", false);
+        setUpActionBar("VMC Manager", false);
+        // getSupportActionBar().hide();
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.activity_main_actionbar_title);
+        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.activity_main_actionbar_title);*/
 
-        mListView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<HomeMenuItem> mAdapter = new HomeMenuAdapter(this, R.layout.listitem, Data.HOME_MENU_ITEMS);
-        mListView.setAdapter(mAdapter);
-        mListView.setDividerHeight(0);
-        mListView.setOnItemClickListener(mOnItemClickListener);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch (id){
+                    case R.id.navigation_home:
+                        viewPager.setCurrentItem(0);
+                        return true;
+                    case R.id.navigation_todo:
+                        viewPager.setCurrentItem(1);
+                        return true;
+                    case R.id.navigation_settings:
+                        viewPager.setCurrentItem(2);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        textView = findViewById(R.id.username);
+        textView.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+        viewPager = findViewById(R.id.viewpager);
+        viewPager.setPageTransformer(true, new PageTransformerPopUp(PageTransformerPopUp.TransformType.FLOW));
+        viewPager.setOnTouchListener(null);
+        viewPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager()));
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // user loged in
+                } else {
+                    // Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient);
+                    goToLogInActivity();
+                }
+                // ...
+            }
+        };
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -71,52 +108,20 @@ public class MainActivity extends ActivityBase {
         switch (id){
             case R.id.action_settings:
                 break;
+            case R.id.action_logout:
+                revokeAccess();
+                break;
             case R.id.action_about:
-                goToNextActivity(AboutActivity.class);
+                goToNextActivity(ActivityAbout.class);
                 break;
         }
         return true;
     }
 
-    private void showDocument(File file) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(Uri.fromFile(mFile), "application/pdf");
-        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        startActivity(i);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-
-        // initCollectionPicker();
     }
-
-    private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            String title = Data.HOME_MENU_ITEMS[position].getTitle();
-
-            if(title.equals(Data.ITEM_PROJECT.getTitle())){
-                goToNextActivity(ActivityProject.class);
-            }else if(title.equals(Data.ITEM_SALE.getTitle())){
-                goToNextActivity(ActivitySale.class);
-            }else if(title.equals(Data.ITEM_ACCOUNTS.getTitle())){
-                goToNextActivity(ActivityAccount.class);
-            }else if(title.equals(Data.ITEM_SHOPS.getTitle())){
-                goToNextActivity(ActivityShop.class);
-            }else if(title.equals(Data.ITEM_TODO.getTitle())){
-                goToNextActivity(ActivityTodo.class);
-            }else if(title.equals(Data.ITEM_TOOLS.getTitle())){
-                goToNextActivity(ActivityTools.class);
-            }else if(title.equals(Data.ITEM_CONCRETE_CALCULATOR.getTitle())){
-                goToNextActivity(ActivityConcreteCalculator.class);
-            }else if(title.equals(Data.ITEM_EXPIRY_DATES.getTitle())){
-                goToNextActivity(ActivityExpiryDates.class);
-            }
-        }
-    };
 
     private void goToNextActivity(Class mTargetActivity) {
         if(mTargetActivity != null){
@@ -125,4 +130,31 @@ public class MainActivity extends ActivityBase {
         }
     }
 
+    public static void revokeAccess() {
+        mAuth.signOut();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    private void goToLogInActivity(){
+        Intent intent = new Intent(this, ActivityLogin.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }

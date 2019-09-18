@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -89,9 +90,15 @@ public class Utilities {
     }
 
     public static Intent getDialIntent(String phoneNo) {
-        String uri = "tel:" + phoneNo;
+        String uri = "tel:" + phoneNo.trim();
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse(uri));
         return intent;
+    }
+
+    public static void notifySound(Context context){
+        Uri uri = Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.sound);
+        MediaPlayer mediaPlayer= MediaPlayer.create(context, uri);
+        mediaPlayer.start();
     }
 }

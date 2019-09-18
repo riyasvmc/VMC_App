@@ -8,7 +8,7 @@
     android:gravity="center_vertical"
     android:layout_centerVertical="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.zeefive.vmcapp.view.textview.roboto.TextView_bold
+    <com.zeefive.vmcapp.view.textview.roboto.TextView_medium
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:textColor="@color/text_color_primary"
         android:textSize="@dimen/listitem_text1_size" />
-    <com.zeefive.vmcapp.view.textview.roboto.TextView_medium
+    <com.zeefive.vmcapp.view.textview.roboto.TextView_bold
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

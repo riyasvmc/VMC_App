@@ -1,9 +1,8 @@
 package com.zeefive.vmcapp.activity;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -15,9 +14,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.adapter.ShopAdapter;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddShop;
-
-import hugo.weaving.DebugLog;
 
 public class ActivityShop extends ActivityBase {
 
@@ -34,7 +30,7 @@ public class ActivityShop extends ActivityBase {
         setUpActionBar(TITLE, true);
 
         mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         emptyView = (LinearLayout) findViewById(R.id.empty_view);
@@ -48,9 +44,9 @@ public class ActivityShop extends ActivityBase {
         });
 
         // project query
-        Query query = Data.QUERY_SHOP;
+        Query query = Data.getQuery(getBaseContext(), Data.SHOPS);
         query.addValueEventListener(new ValueEventListener() {
-            @DebugLog
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long count = dataSnapshot.getChildrenCount();

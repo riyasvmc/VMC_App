@@ -3,18 +3,12 @@ package com.zeefive.vmcapp.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.zeefive.vmcapp.R;
-import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.model.Purchase;
 
 public class ActivityBase extends AppCompatActivity{
 
@@ -59,18 +53,6 @@ public class ActivityBase extends AppCompatActivity{
         switch (id){
             case android.R.id.home:
                 onBackPressed();
-                break;
-            case R.id.action_null_projects:
-                ((DatabaseReference)Data.QUERY_PROJECTS).setValue(null);
-                break;
-            case R.id.action_null_purchases:
-                ((DatabaseReference)Data.QUERY_PURCHASES).setValue(null);
-                break;
-            case R.id.action_null_todos:
-                ((DatabaseReference)Data.QUERY_TODOS).setValue(null);
-                break;
-            case R.id.action_null_tools:
-                ((DatabaseReference)Data.QUERY_TOOlS).setValue(null);
                 break;
         }
         return true;

@@ -1,15 +1,15 @@
 package com.zeefive.vmcapp.adapter;
 
-import android.support.v7.view.ActionMode;
+import androidx.appcompat.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.zeefive.vmcapp.MySelectableInterface;
 import com.zeefive.vmcapp.R;
+import com.zeefive.vmcapp.Utilities;
 import com.zeefive.vmcapp.activity.ActivityBase;
 import com.zeefive.vmcapp.data.Data;
 import com.zeefive.vmcapp.model.ToDo;
@@ -27,36 +27,14 @@ public class TodoAdapter extends FirebaseRecyclerAdapter<ToDo, ToDoViewHolder> i
     private ActivityBase activity;
 
     public TodoAdapter(Query ref, ActivityBase activity) {
-        super(ToDo.class, R.layout.listitem, ToDoViewHolder.class, ref);
+        super(ToDo.class, R.layout.griditem, ToDoViewHolder.class, ref);
         this.activity = activity;
     }
 
     @Override
     protected void populateViewHolder(final ToDoViewHolder viewHolder, final ToDo item, final int position) {
         final DatabaseReference userRef = getRef(position);
-        boolean isSelected = selectedItems.get(position, false);
-        viewHolder.bindToPost(item, View.VISIBLE, isSelected, multiChoiceMode);
-        viewHolder.itemView.setActivated(isSelected);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mActionMode != null) {
-                    toggleSelection(position);
-                }
-            }
-        });
-        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                /*if (mActionMode != null) {
-                    return true;
-                }
-                mActionMode = activity.startSupportActionMode(TodoAdapter.this);
-                toggleSelection(position);*/
-                return true;
-            }
-        });
-        viewHolder.itemView.findViewById(R.id.imageView).setVisibility(View.GONE);
+        viewHolder.bindToPost(item, position);
     }
 
     public int getSelectedItemCount() {
@@ -105,7 +83,7 @@ public class TodoAdapter extends FirebaseRecyclerAdapter<ToDo, ToDoViewHolder> i
         for (ToDo item : list) {
             map.put(item.getKey(), null);
         }
-        ((DatabaseReference)Data.QUERY_TODOS).updateChildren(map);
+        ((DatabaseReference)Data.getQuery(activity, Data.TODOS)).updateChildren(map);
     }
 
     private void deleteItem(int position){
@@ -142,7 +120,7 @@ public class TodoAdapter extends FirebaseRecyclerAdapter<ToDo, ToDoViewHolder> i
     }
 
     public void save(ToDo item){
-        DatabaseReference reference = ((DatabaseReference)Data.QUERY_TODOS).push();
+        DatabaseReference reference = ((DatabaseReference)Data.getQuery(activity, Data.TODOS)).push();
         item.setKey(reference.getKey());
         reference.setValue(item);
     }
@@ -150,5 +128,6 @@ public class TodoAdapter extends FirebaseRecyclerAdapter<ToDo, ToDoViewHolder> i
     @Override
     public void onItemDismiss(int position) {
         deleteItem(position);
+        Utilities.notifySound(activity);
     }
 }

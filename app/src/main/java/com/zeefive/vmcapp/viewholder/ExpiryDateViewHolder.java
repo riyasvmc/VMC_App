@@ -1,8 +1,7 @@
 package com.zeefive.vmcapp.viewholder;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ public class ExpiryDateViewHolder extends RecyclerView.ViewHolder {
         titleView2 = (TextView) view.findViewById(R.id.textView2);
     }
 
-    public void bindToPost(ExpiryDate i) {
+    public void bindToPost(ExpiryDate i, int position) {
         titleView1.setText(i.getTitle());
         titleView2.setText(i.getFormattedCreatedAt());
         if(i.isExpired()) {
@@ -30,6 +29,13 @@ public class ExpiryDateViewHolder extends RecyclerView.ViewHolder {
         }
         else {
             titleView2.setTextColor(Color.GRAY);
+        }
+
+        if(position % 2 == 1) {
+            itemView.setBackgroundResource(R.drawable.selector_dark);
+        }
+        else{
+            itemView.setBackgroundResource(R.drawable.selector_light);
         }
     }
 }

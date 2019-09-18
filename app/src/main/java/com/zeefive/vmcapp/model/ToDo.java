@@ -44,8 +44,7 @@ public class ToDo implements Serializable {
 
     @Exclude
     public String getSubTitle() {
-        if(project != null) return project.getTitle();
-        else return null;
+        return getFormattedCreatedAt();
     }
 
     public Object getCreatedAt() {

@@ -1,14 +1,17 @@
 package com.zeefive.vmcapp.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.adapter.ExpiryDateAdapter;
 import com.zeefive.vmcapp.data.Data;
@@ -19,6 +22,7 @@ public class ActivityExpiryDates extends ActivityBase {
     private FirebaseAuth mAuth;
     private ExpiryDateAdapter mAdapter;
     private RecyclerView mRecyclerView;
+    private LinearLayout emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +30,46 @@ public class ActivityExpiryDates extends ActivityBase {
         setContentView(R.layout.recyclerview_fab);
         setUpActionBar(TITLE, true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAdapter.showEditorDialog(null);
+                mAdapter.showEditorActivity(null);
             }
         });
 
         mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Query query = Data.QUERY_EXPIRY_DATES_ORD_BY_CREATED_AT;
+        // set empty view
+        emptyView = (LinearLayout) findViewById(R.id.empty_view);
+
+        Query query = Data.getQuery(getBaseContext(), Data.EXPIRY_DATES_ORD_BY_CREATED_AT);
+        query.addValueEventListener(valueEventListener);
 
         mAdapter = new ExpiryDateAdapter(query, this);
         mRecyclerView.setAdapter(mAdapter);
     }
+
+    private ValueEventListener valueEventListener = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            long count = dataSnapshot.getChildrenCount();
+            if(count == 0){
+                mRecyclerView.setVisibility(View.GONE);
+                emptyView.setVisibility(View.VISIBLE);
+            }else{
+                mRecyclerView.setVisibility(View.VISIBLE);
+                emptyView.setVisibility(View.GONE);
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 }

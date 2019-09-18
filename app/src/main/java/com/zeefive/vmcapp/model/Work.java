@@ -13,6 +13,8 @@ import java.util.List;
 // [START blog_user_class]
 @IgnoreExtraProperties
 public class Work implements Serializable {
+    @Exclude
+    public static final String ITEM = "ITEM";
     private String key;
     private String title;
     private String projectKey;
@@ -40,6 +42,10 @@ public class Work implements Serializable {
 
     public String getProjectKey(){
         return projectKey;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public String getTitle() {

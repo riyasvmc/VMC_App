@@ -9,8 +9,6 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
 
-import hugo.weaving.DebugLog;
-
 // [START blog_user_class]
 @IgnoreExtraProperties
 public class ExpiryDate implements Serializable {
@@ -48,6 +46,11 @@ public class ExpiryDate implements Serializable {
         return period;
     }
 
+    @Exclude
+    public void setCreatedAt(long createdAt){
+        this.createdAt = createdAt;
+    }
+
     public Object getCreatedAt() {
         return createdAt;
     }
@@ -67,7 +70,6 @@ public class ExpiryDate implements Serializable {
         return false;
     }
 
-    @DebugLog
     @Exclude
     public boolean isInWarningRange(){
         // check weather the date passed

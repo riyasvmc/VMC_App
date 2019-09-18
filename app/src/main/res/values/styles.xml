@@ -1,17 +1,42 @@
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <!-- <item name="buttonStyle">@style/MyButton</item> -->
+        <!-- <item name="actionBarStyle">@style/ActionBar</item> -->
     </style>
-
     <style name="ActionBar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="background">@drawable/bg_actionbar</item>
         <item name="android:background">@drawable/bg_actionbar</item>
+    </style>
+    <style name="Button_blue" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_blue_selector</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:textAppearance">@style/MyButtonText</item>
+    </style>
+
+    <style name="Button_red" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_red_selector</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:textAppearance">@style/MyButtonText</item>
+    </style>
+
+    <style name="MyButtonText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:shadowColor">#dc313131</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowDy">1</item>
     </style>
 </resources>

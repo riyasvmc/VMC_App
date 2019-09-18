@@ -2,9 +2,9 @@ package com.zeefive.vmcapp.activity;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,8 +14,8 @@ import com.google.firebase.database.Query;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.adapter.ToolAdapter;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddTool;
-import com.zeefive.vmcapp.fragment.DialogFragment_ToolLocator;
+import com.zeefive.vmcapp.dialog.DialogFragment_AddTool;
+import com.zeefive.vmcapp.dialog.DialogFragment_ToolLocator;
 import com.zeefive.vmcapp.recyclerview.ItemDecorationAlbumColumns;
 
 public class ActivityTools extends ActivityBase {
@@ -43,7 +43,7 @@ public class ActivityTools extends ActivityBase {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(NUMBER_OF_COLUMNS, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new ItemDecorationAlbumColumns(getResources().getDimensionPixelOffset(R.dimen.width_gridview_divider),NUMBER_OF_COLUMNS));
@@ -51,7 +51,7 @@ public class ActivityTools extends ActivityBase {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());*/
 
-        Query query = Data.QUERY_TOOlS;
+        Query query = Data.getQuery(getBaseContext(), Data.TOOLS);
 
         mAdapter = new ToolAdapter(query, this, R.layout.griditem_tool);
         mRecyclerView.setAdapter(mAdapter);

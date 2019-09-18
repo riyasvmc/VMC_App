@@ -24,7 +24,7 @@ public class ActivityConcreteCalculator extends ActivityBase {
     public void onClick(View view){
         int id = view.getId();
         switch (id){
-            case R.id.button_calculate :
+            case R.id.button_reset:
                 calculateMaterialsQuanitity();
                 break;
         }

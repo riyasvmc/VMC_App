@@ -7,7 +7,7 @@ import com.zeefive.vmcapp.R;
 
 public class ActivitySplash extends ActivityBase {
 
-    public static final int SLEEP_TIME = 1000;
+    public static final int SLEEP_TIME = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class ActivitySplash extends ActivityBase {
             public void run(){
                 try{
                     Thread.sleep(SLEEP_TIME);
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    Intent intent = new Intent(getBaseContext(), ActivityLogin.class);
                     startActivity(intent);
                     finish();
                 }catch (Exception e){

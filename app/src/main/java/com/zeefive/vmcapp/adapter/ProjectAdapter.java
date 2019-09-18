@@ -1,8 +1,8 @@
 package com.zeefive.vmcapp.adapter;
 
 import android.content.Intent;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.PopupMenu;
+import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,7 +28,7 @@ public class ProjectAdapter extends FirebaseRecyclerAdapter<Project, ProjectView
     private ActivityBase activity;
 
     public ProjectAdapter(Query ref, ActivityBase activity) {
-        super(Project.class, R.layout.listitem, ProjectViewHolder.class, ref);
+        super(Project.class, R.layout.griditem, ProjectViewHolder.class, ref);
         this.activity = activity;
     }
 
@@ -47,11 +47,11 @@ public class ProjectAdapter extends FirebaseRecyclerAdapter<Project, ProjectView
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                activity.showPopupMenu(view, R.menu.menu_popup_project, getListener(position));
+                activity.showPopupMenu(view, R.menu.menu_popup_project, getListener(item));
                 return true;
             }
         });
-        viewHolder.bindToPost(item, activity);
+        viewHolder.bindToPost(item, position);
     }
 
     public int getSelectedItemCount() {
@@ -114,19 +114,18 @@ public class ProjectAdapter extends FirebaseRecyclerAdapter<Project, ProjectView
         notifyDataSetChanged();
     }
 
-    private void setItemCompleted(int position) {
-        Project item = getItem(position);
-        ((DatabaseReference)Data.QUERY_PROJECTS).child(item.getKey()).child(Data.KEY_COMPLETED).setValue(!item.isCompleted());
+    private void setItemCompleted(Project item) {
+        ((DatabaseReference)Data.getQuery(activity, Data.PROJECTS)).child(item.getKey()).child(Data.KEY_COMPLETED).setValue(!item.isCompleted());
         Toast.makeText(activity, "Done.", Toast.LENGTH_SHORT).show();
     }
 
-    private PopupMenu.OnMenuItemClickListener getListener(final int position) {
+    private PopupMenu.OnMenuItemClickListener getListener(final Project item) {
         return new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_mark_completed:
-                        setItemCompleted(position); break;
+                        setItemCompleted(item); break;
                     case R.id.action_favorite:
                         Toast.makeText(activity, "Complete code.", Toast.LENGTH_SHORT).show(); break;
                 }

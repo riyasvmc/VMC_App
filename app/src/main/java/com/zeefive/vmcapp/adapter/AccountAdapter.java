@@ -2,9 +2,8 @@ package com.zeefive.vmcapp.adapter;
 
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.support.v7.view.ActionMode;
-import android.support.v7.widget.PopupMenu;
-import android.view.Menu;
+import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -12,22 +11,15 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
-import com.zeefive.vmcapp.MySelectableInterface;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.activity.ActivityAccountDetail;
 import com.zeefive.vmcapp.activity.ActivityBase;
-import com.zeefive.vmcapp.activity.ActivityShopDetail;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddAccount;
-import com.zeefive.vmcapp.fragment.DialogFragment_AddShop;
+import com.zeefive.vmcapp.dialog.DialogFragment_AddAccount;
 import com.zeefive.vmcapp.model.Account;
-import com.zeefive.vmcapp.model.Shop;
 import com.zeefive.vmcapp.viewholder.AccountViewHolder;
-import com.zeefive.vmcapp.viewholder.ShopViewHolder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AccountAdapter extends FirebaseRecyclerAdapter<Account, AccountViewHolder> {
@@ -65,7 +57,7 @@ public class AccountAdapter extends FirebaseRecyclerAdapter<Account, AccountView
     private void deleteItem(Account item){
         Map<String, Object> map = new HashMap<>();
         map.put(item.getKey(), null);
-        ((DatabaseReference)Data.QUERY_SHOP).updateChildren(map);
+        ((DatabaseReference) Data.getQuery(activity, Data.SHOPS)).updateChildren(map);
         Toast.makeText(activity, "Deleted!", Toast.LENGTH_SHORT).show();
     }
 
