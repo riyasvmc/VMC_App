@@ -54,11 +54,11 @@ public class Data {
     public static final MenuItem[] HOME_MENU_ITEMS = new MenuItem[]
     {
             ITEM_PROJECT,
-            ITEM_TODO,
+            //ITEM_TODO,
             //ITEM_ACCOUNTS,
             //ITEM_SHOPS,
             //ITEM_SALE,
-            ITEM_TOOLS,
+            //ITEM_TOOLS,
             ITEM_CHECK_LIST,
             //ITEM_WARRENTIES,            // TODO put this to utility
             //ITEM_CONCRETE_CALCULATOR,   // TODO put this to utility
