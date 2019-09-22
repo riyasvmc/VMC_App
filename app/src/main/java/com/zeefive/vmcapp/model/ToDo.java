@@ -44,7 +44,11 @@ public class ToDo implements Serializable {
 
     @Exclude
     public String getSubTitle() {
-        return getProject().getTitle()+ " \u00B7 " + getFormattedCreatedAt();
+        String projectTitle = getProject().getTitle();
+        if(projectTitle != null)
+            return getProject().getTitle()+ " \u00B7 " + getFormattedCreatedAt();
+        else
+            return getFormattedCreatedAt();
     }
 
     public Object getCreatedAt() {
