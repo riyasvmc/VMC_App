@@ -1,8 +1,6 @@
 package com.zeefive.vmcapp.activity;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -10,14 +8,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.zeefive.vmcapp.R;
 import com.zeefive.vmcapp.data.Data;
-import com.zeefive.vmcapp.dialog.DialogFragment_Work_DatePicker;
 import com.zeefive.vmcapp.model.CheckList;
-import com.zeefive.vmcapp.model.ExpiryDate;
-import com.zeefive.vmcapp.model.Work;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 public class ActivityCheckList_Editor extends ActivityBase {
 
@@ -73,13 +64,13 @@ public class ActivityCheckList_Editor extends ActivityBase {
         String title = mEditText_title.getText().toString();
 
         if(edit_mode){
-            reference = ((DatabaseReference)Data.getQuery(getBaseContext(), Data.CHECK_LIST)).child(item.getKey());
-            item_new = new CheckList(item.getKey(), title, null);
+            reference = ((DatabaseReference)Data.getQuery(getBaseContext(), Data.CHECK_LISTS)).child(item.getKey());
+            item_new = new CheckList(item.getKey(), title);
             reference.setValue(item_new);
         }else {
-            reference = ((DatabaseReference)Data.getQuery(getBaseContext(), Data.CHECK_LIST)).push();
+            reference = ((DatabaseReference)Data.getQuery(getBaseContext(), Data.CHECK_LISTS)).push();
             String key = reference.getKey();
-            item_new = new CheckList(key, title, null);
+            item_new = new CheckList(key, title);
             reference.setValue(item_new);
         }
         reference.setValue(item_new);

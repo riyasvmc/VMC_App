@@ -41,7 +41,7 @@ public class ActivityCheckList extends ActivityBase {
         });
 
         // project query
-        Query query = Data.getQuery(getBaseContext(), Data.CHECK_LIST);
+        Query query = Data.getQuery(getBaseContext(), Data.CHECK_LISTS);
         query.addValueEventListener(new ValueEventListener() {
 
             @Override

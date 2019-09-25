@@ -12,16 +12,14 @@ public class CheckList implements Serializable {
     public static final String ITEM = "CheckList";
     private String key;
     private String title;
-    private String[] list;
 
     public CheckList() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public CheckList(String key, String title, String[] list) {
+    public CheckList(String key, String title) {
         this.key = key;
         this.title = title;
-        this.list = list;
     }
 
     public void setKey(String key){
@@ -34,10 +32,6 @@ public class CheckList implements Serializable {
 
     public String getTitle() {
         return title;
-    }
-
-    public String[] getList() {
-        return list;
     }
 }
 // [END blog_user_class]

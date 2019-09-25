@@ -16,8 +16,8 @@ public class CheckListViewHolder extends RecyclerView.ViewHolder {
     public CheckListViewHolder(View view) {
         super(view);
 
-        titleView1 = (TextView) view.findViewById(R.id.textView1);
-        titleView2 = (TextView) view.findViewById(R.id.textView2);
+        titleView1 = view.findViewById(R.id.textView1);
+        titleView2 = view.findViewById(R.id.textView2);
     }
 
     public void bindToPost(CheckList i, Context context) {

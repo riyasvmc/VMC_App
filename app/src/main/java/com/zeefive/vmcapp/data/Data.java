@@ -20,7 +20,8 @@ public class Data {
     public static final int LOGS_ORD_BY_CREATED_AT = 5;
     public static final int SALES = 6;
     public static final int SHOPS = 7;
-    public static final int CHECK_LIST = 8;
+    public static final int CHECK_LISTS = 8;
+    public static final int CHECK_LISTS_SUB_ITEMS = 20;
     public static final int PAYMENT = 9;
     public static final int ACCOUNTS = 10;
     public static final int PROJECTS = 11;
@@ -40,12 +41,13 @@ public class Data {
     public static final MenuItem ITEM_CONTACTS = new MenuItem("Contacts", "Company contacts", R.drawable.ic_person_black_24dp);
     public static final MenuItem ITEM_SALE = new MenuItem("Sales", "", R.drawable.ic_shopping_basket_grey_300_24dp);
     public static final MenuItem ITEM_TODO = new MenuItem("ToDos", "See what to do next", R.drawable.ic_home_assignment_24dp);
+    public static final MenuItem ITEM_CHECKLISTS = new MenuItem("Check Lists", "CheckList for regular checking", R.drawable.ic_home_assignment_24dp);
     public static final MenuItem ITEM_TOOLS = new MenuItem("Tools", "List company tools here", R.drawable.ic_settings_grey_300_24dp);
     public static final MenuItem ITEM_WARRENTIES = new MenuItem("Warrenties", "", R.drawable.ic_settings_grey_300_24dp);
-    public static final MenuItem ITEM_CHECK_LIST = new MenuItem("Check Lists", "Check list for easy execution", R.drawable.ic_home_assignment_24dp);
     public static final MenuItem ITEM_CONCRETE_CALCULATOR = new MenuItem("Concrete Calculator", "Get your Utilities from here", R.drawable.ic_markunread_mailbox_grey_300_24dp);
     public static final MenuItem ITEM_PROPERTIES = new MenuItem("Properties", "", R.drawable.ic_chrome_reader_mode_black_24dp);
     public static final MenuItem ITEM_EXPIRY_DATES = new MenuItem("Expiry Dates", "Save all Important dates", R.drawable.ic_today_black_24dp);
+    public static final MenuItem ITEM_LOGS = new MenuItem("Logs", "My Diaries written here", R.drawable.ic_today_black_24dp);
     // settings menu
     public static final MenuItem ITEM_LOGOUT = new MenuItem("Log out", "Log out of this Account", R.drawable.ic_today_black_24dp);
     public static final MenuItem ITEM_FEEDBACK = new MenuItem("Feedback", "Send your Valuable feedback", R.drawable.ic_today_black_24dp);
@@ -59,7 +61,8 @@ public class Data {
             //ITEM_SHOPS,
             //ITEM_SALE,
             //ITEM_TOOLS,
-            ITEM_CHECK_LIST,
+            ITEM_CHECKLISTS,
+            ITEM_LOGS,
             //ITEM_WARRENTIES,            // TODO put this to utility
             //ITEM_CONCRETE_CALCULATOR,   // TODO put this to utility
             //ITEM_PROPERTIES,
@@ -86,6 +89,7 @@ public class Data {
     public static final String KEY_SALES = "sales";
     public static final String KEY_SHOPS = "shops";
     public static final String KEY_CHECK_LIST = "check_lists";
+    public static final String KEY_CHECK_LIST_SUB_ITEMS= "check_lists_sub_items";
     public static final String KEY_PAYMENTS = "payments";
     public static final String KEY_ACCOUNTS = "accounts";
     public static final String KEY_PROJECT_KEY = "projectKey";
@@ -135,74 +139,78 @@ public class Data {
 
     public static Query getQuery(Context context, int value){
         switch (value){
-            case BASE: return FirebaseDatabase.getInstance().getReference().child(getCode(context));
+            case BASE: return FirebaseDatabase.getInstance().getReference().child(getUid(context));
             case EXPIRY_DATES: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_EXPIRY_DATES);
             case EXPIRY_DATES_ORD_BY_CREATED_AT: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_EXPIRY_DATES).orderByChild(KEY_CREATED_AT);
             case LOGS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_LOGS);
             case LOGS_ORD_BY_CREATED_AT: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_LOGS).orderByChild(KEY_CREATED_AT);
             case SALES: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_SALES);
             case SHOPS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_SHOPS);
-            case CHECK_LIST: return
+            case CHECK_LISTS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_CHECK_LIST);
+            case CHECK_LISTS_SUB_ITEMS: return
+                    FirebaseDatabase.getInstance().getReference()
+                            .child(getUid(context))
+                            .child(KEY_CHECK_LIST_SUB_ITEMS);
             case PAYMENT: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_PAYMENTS);
             case ACCOUNTS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_ACCOUNTS);
             case PROJECTS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_PROJECTS);
             case PROJECTS_ORD_BY_COMPLETED: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_PROJECTS).orderByChild(KEY_COMPLETED);
             case TOOLS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_TOOLS);
             case TODOS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_TODOS);
             case TODOS_ORD_BY_PRIORITY: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_TODOS).orderByChild(KEY_PRIORITY);
             case PURCHASE: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_PURCHASES);
             case WORKS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_WORKS);
             case CONTACTS: return
                     FirebaseDatabase.getInstance().getReference()
-                            .child(getCode(context))
+                            .child(getUid(context))
                             .child(KEY_CONTACTS);
             case USERS: return
                     FirebaseDatabase.getInstance().getReference()
@@ -211,7 +219,7 @@ public class Data {
         }
     }
 
-    private static String getCode(Context context){
+    private static String getUid(Context context){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d("Riyas.Vmc", user.getUid());
         return user.getUid();

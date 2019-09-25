@@ -3,7 +3,6 @@ package com.zeefive.vmcapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,12 +66,14 @@ public class HomeMenuRecyclerAdapter extends RecyclerView.Adapter<HomeMenuViewHo
                     goToNextActivity(ActivityTodo.class);
                 }else if(title.equals(Data.ITEM_TOOLS.getTitle())){
                     goToNextActivity(ActivityTools.class);
+                }else if(title.equals(Data.ITEM_CHECKLISTS.getTitle())){
+                    goToNextActivity(ActivityCheckList.class);
+                }else if(title.equals(Data.ITEM_LOGS.getTitle())){
+                    goToNextActivity(ActivityLog.class);
                 }else if(title.equals(Data.ITEM_CONCRETE_CALCULATOR.getTitle())){
                     goToNextActivity(ActivityConcreteCalculator.class);
                 }else if(title.equals(Data.ITEM_EXPIRY_DATES.getTitle())){
                     goToNextActivity(ActivityExpiryDates.class);
-                }else if(title.equals(Data.ITEM_CHECK_LIST.getTitle())){
-                    goToNextActivity(ActivityCheckList.class);
                 }else if(title.equals(Data.ITEM_CONTACTS.getTitle())){
                     goToNextActivity(ActivityContacts.class);
                 // settings page
