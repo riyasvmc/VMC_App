@@ -133,7 +133,6 @@ public class ActivityLogin extends ActivityBase{
     }
     // [END on_stop_remove_listener]
 
-
     private void signIn() {
         if(mGoogleSignInClient != null){
             mGoogleSignInClient.signOut();

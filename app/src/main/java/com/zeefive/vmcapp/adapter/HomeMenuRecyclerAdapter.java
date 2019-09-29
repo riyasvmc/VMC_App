@@ -17,7 +17,6 @@ import com.zeefive.vmcapp.activity.ActivityCheckList;
 import com.zeefive.vmcapp.activity.ActivityConcreteCalculator;
 import com.zeefive.vmcapp.activity.ActivityContacts;
 import com.zeefive.vmcapp.activity.ActivityExpiryDates;
-import com.zeefive.vmcapp.activity.ActivityLog;
 import com.zeefive.vmcapp.activity.ActivityProject;
 import com.zeefive.vmcapp.activity.ActivitySale;
 import com.zeefive.vmcapp.activity.ActivityShop;
@@ -68,8 +67,6 @@ public class HomeMenuRecyclerAdapter extends RecyclerView.Adapter<HomeMenuViewHo
                     goToNextActivity(ActivityTools.class);
                 }else if(title.equals(Data.ITEM_CHECKLISTS.getTitle())){
                     goToNextActivity(ActivityCheckList.class);
-                }else if(title.equals(Data.ITEM_LOGS.getTitle())){
-                    goToNextActivity(ActivityLog.class);
                 }else if(title.equals(Data.ITEM_CONCRETE_CALCULATOR.getTitle())){
                     goToNextActivity(ActivityConcreteCalculator.class);
                 }else if(title.equals(Data.ITEM_EXPIRY_DATES.getTitle())){
@@ -84,16 +81,6 @@ public class HomeMenuRecyclerAdapter extends RecyclerView.Adapter<HomeMenuViewHo
                 }else if(title.equals(Data.ITEM_ABOUT.getTitle())){
                     goToNextActivity(ActivityAbout.class);
                 }
-            }
-        });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                String title = Data.HOME_MENU_ITEMS[position].getTitle();
-                if(title.equals(Data.ITEM_EXPIRY_DATES.getTitle())){
-                    goToNextActivity(ActivityLog.class);
-                }
-                return true;
             }
         });
         holder.bindToPost(item, position);

@@ -21,9 +21,6 @@
             android:name=".activity.ActivityProject"
             android:parentActivityName=".activity.MainActivity"/>
         <activity
-            android:name=".activity.ActivityLog"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity
             android:name=".activity.ActivityAccount"
             android:parentActivityName=".activity.MainActivity"/>
         <activity
@@ -44,9 +41,6 @@
         <activity
             android:name=".activity.ActivityExpiryDatesEditor"
             android:parentActivityName=".activity.ActivityExpiryDates"/>
-        <activity
-            android:name=".activity.ActivityLogsEditor"
-            android:parentActivityName=".activity.ActivityLog"/>
         <activity
             android:name=".activity.ActivityTools"
             android:parentActivityName=".activity.MainActivity"/>

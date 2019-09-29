@@ -16,8 +16,6 @@ public class Data {
     public static final int BASE = 1;
     public static final int EXPIRY_DATES = 2;
     public static final int EXPIRY_DATES_ORD_BY_CREATED_AT = 3;
-    public static final int LOGS = 4;
-    public static final int LOGS_ORD_BY_CREATED_AT = 5;
     public static final int SALES = 6;
     public static final int SHOPS = 7;
     public static final int CHECK_LISTS = 8;
@@ -47,7 +45,6 @@ public class Data {
     public static final MenuItem ITEM_CONCRETE_CALCULATOR = new MenuItem("Concrete Calculator", "Get your Utilities from here", R.drawable.ic_markunread_mailbox_grey_300_24dp);
     public static final MenuItem ITEM_PROPERTIES = new MenuItem("Properties", "", R.drawable.ic_chrome_reader_mode_black_24dp);
     public static final MenuItem ITEM_EXPIRY_DATES = new MenuItem("Expiry Dates", "Save all Important dates", R.drawable.ic_today_black_24dp);
-    public static final MenuItem ITEM_LOGS = new MenuItem("Logs", "My Diaries written here", R.drawable.ic_today_black_24dp);
     // settings menu
     public static final MenuItem ITEM_LOGOUT = new MenuItem("Log out", "Log out of this Account", R.drawable.ic_today_black_24dp);
     public static final MenuItem ITEM_FEEDBACK = new MenuItem("Feedback", "Send your Valuable feedback", R.drawable.ic_today_black_24dp);
@@ -62,7 +59,6 @@ public class Data {
             //ITEM_SALE,
             //ITEM_TOOLS,
             ITEM_CHECKLISTS,
-            ITEM_LOGS,
             //ITEM_WARRENTIES,            // TODO put this to utility
             //ITEM_CONCRETE_CALCULATOR,   // TODO put this to utility
             //ITEM_PROPERTIES,
@@ -97,7 +93,6 @@ public class Data {
     public static final String KEY_WORKS = "works";
     public static final String KEY_TODOS = "todos";
     public static final String KEY_EXPIRY_DATES = "expiry_dates";
-    public static final String KEY_LOGS = "logs";
     public static final String KEY_CREATED_AT = "createdAt";
     public static final String KEY_DONE = "done";
     public static final String KEY_PRIORITY = "priority";
@@ -148,14 +143,6 @@ public class Data {
                     FirebaseDatabase.getInstance().getReference()
                             .child(getUid(context))
                             .child(KEY_EXPIRY_DATES).orderByChild(KEY_CREATED_AT);
-            case LOGS: return
-                    FirebaseDatabase.getInstance().getReference()
-                            .child(getUid(context))
-                            .child(KEY_LOGS);
-            case LOGS_ORD_BY_CREATED_AT: return
-                    FirebaseDatabase.getInstance().getReference()
-                            .child(getUid(context))
-                            .child(KEY_LOGS).orderByChild(KEY_CREATED_AT);
             case SALES: return
                     FirebaseDatabase.getInstance().getReference()
                             .child(getUid(context))
