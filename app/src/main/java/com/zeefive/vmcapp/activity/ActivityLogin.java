@@ -135,6 +135,9 @@ public class ActivityLogin extends ActivityBase{
 
 
     private void signIn() {
+        if(mGoogleSignInClient != null){
+            mGoogleSignInClient.signOut();
+        }
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
         Log.d(TAG, "signIn() is called.");
