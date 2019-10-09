@@ -1,0 +1,101 @@
+{
+  "project_info": {
+    "project_number": "559112506912",
+    "firebase_url": "https://vmcapp-62781.firebaseio.com",
+    "project_id": "vmcapp-62781",
+    "storage_bucket": "vmcapp-62781.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559112506912:android:4910c3399cfdc3d310f645",
+        "android_client_info": {
+          "package_name": "com.vmc.vmcdaily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559112506912-m5mb6fqbmu3cujl94bi72b6jkp4bnuos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vmc.vmcdaily",
+            "certificate_hash": "90fe2a34087efa47caaef7f137e0a0b4155904b8"
+          }
+        },
+        {
+          "client_id": "559112506912-cmbg68f46fkcb56mrkgq4dsbhovpbekc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjS3eQ1uoec9uczv_MgmCMfv49PJ96G8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559112506912-cmbg68f46fkcb56mrkgq4dsbhovpbekc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559112506912:android:26706b335041f1a6",
+        "android_client_info": {
+          "package_name": "com.zeefive.vmcapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559112506912-ppkr3g5v6i08dr6mmnd1p4ckge7v3nqi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeefive.vmcapp",
+            "certificate_hash": "90fe2a34087efa47caaef7f137e0a0b4155904b8"
+          }
+        },
+        {
+          "client_id": "559112506912-0mq8vn2kn319322lnqqhckkdd0ggjh33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeefive.vmcapp",
+            "certificate_hash": "dff6c66191bd705b5cc974240662d044373c3f54"
+          }
+        },
+        {
+          "client_id": "559112506912-3kqrtq6et8lq2kvr6ssqugmpt49fgc97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeefive.vmcapp",
+            "certificate_hash": "decb31c7793b06cb81ebb65a20dc0a80d43ffeba"
+          }
+        },
+        {
+          "client_id": "559112506912-cmbg68f46fkcb56mrkgq4dsbhovpbekc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjS3eQ1uoec9uczv_MgmCMfv49PJ96G8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559112506912-cmbg68f46fkcb56mrkgq4dsbhovpbekc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

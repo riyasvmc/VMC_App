@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/date_bg"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="4dp"
+        android:text="തീക്കൽ, 05 Oct 2019"
+        android:textColor="#002D3F"
+        android:textSize="12dp" />
+    <TextView
+        android:id="@+id/site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rasheed Valiyadan"
+        android:textSize="14dp"/>
+    <TextView
+        android:id="@+id/work"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="തറ മണ്ണ് filling ആയിരുന്നു. 12 ലോഡ് മണ്ണ് കൊണ്ടുവന്നു."
+        android:textSize="18dp"
+        android:textColor="#313131"/>
+</LinearLayout>

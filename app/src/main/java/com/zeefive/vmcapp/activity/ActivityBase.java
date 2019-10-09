@@ -3,14 +3,15 @@ package com.zeefive.vmcapp.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
-import android.view.MenuItem;
-import android.view.View;
 
-public class ActivityBase extends AppCompatActivity{
+public class ActivityBase extends AppCompatActivity {
 
     public static Context context;
     private static final float ACTIONBAR_ELEVATION = 0f;
